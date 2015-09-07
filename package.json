@@ -1,0 +1,16 @@
+{
+  "name": "generator-skellyjs",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "commander": "*",
+    "isbinaryfile": "*",
+    "mkdirp":"*"
+  },
+  "author": {
+    "name": "Darryl Chin <me@darrylchin.com>"
+  },
+  "repository": "skellyjs/generator-skelly",
+  "preferGlobal": true,
+  "license": "MIT"
+}

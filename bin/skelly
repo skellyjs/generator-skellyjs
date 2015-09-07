@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var isBinaryFile = require("isbinaryfile");
+var mkdirp = require('mkdirp');
+var path = require('path');
+var program = require('commander');
+
+var enableDebug = false;
+
+var debug = enableDebug ? function() {
+  for (var i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+} : function(){};
+
+program
+  .version(require('../package.json').version)
+  .usage("skelly <project name>")
+  .parse(process.argv);
+
+var name = program.args[0];
+var baseFilesDir = path.join(module.filename.split('bin/skelly')[0],'files');
+var destBaseDir = path.join(process.cwd(),name);
+
+debug("Templates: " + baseFilesDir);
+debug("Destination: " + destBaseDir);
+
+createDirectory(destBaseDir);
+
+getFileList(baseFilesDir, function(err, files) {
+  if (err) throw err;
+  console.log("Skelly Generation Complete!");
+  console.log();
+  console.log("  cd " + name);
+  console.log("  npm install");
+  console.log("  npm start");
+  console.log();
+});
+
+function copy(from, to) {
+  if (isBinaryFile.sync(from))
+    write(to, fs.readFileSync(from));
+  else
+    write(to, fs.readFileSync(from, 'utf-8').replace("{name}",name));
+}
+function write(file, str, mode) {
+  fs.writeFileSync(file, str, { mode: mode || 0666 });
+  debug('Writing file: ' + file);
+}
+function getFileList(dir, done) {
+  var results = [];
+  fs.readdir(dir, function(err, list) {
+    if (err) return done(err);
+    var pending = list.length;
+    if (!pending) return done(null, results);
+    list.forEach(function(file) {
+      file = path.resolve(dir, file);
+      fs.stat(file, function(err, stat) {
+        if (stat && stat.isDirectory()) {
+          createDirectory(file.replace(baseFilesDir,destBaseDir));
+          getFileList(file, function(err, res) {
+            results = results.concat(res);
+            if (!--pending) done(null, results);
+          });
+        } else {
+          copy(file, file.replace(baseFilesDir,destBaseDir));
+          if (!--pending) done(null, results);
+        }
+      });
+    });
+  });
+}
+
+function createDirectory(dir) {
+  debug("Creating: " + dir);
+  mkdirp(dir, 0755, function(err){
+    if (err) throw err;
+  });
+}
