@@ -1,6 +1,6 @@
 {
   "name": "generator-skellyjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "dependencies": {
     "commander": "*",
@@ -10,7 +10,7 @@
   "author": {
     "name": "Darryl Chin <me@darrylchin.com>"
   },
-  "repository": "skellyjs/generator-skelly",
+  "repository": "skellyjs/generator-skellyjs",
   "preferGlobal": true,
   "license": "MIT"
 }
