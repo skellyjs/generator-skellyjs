@@ -8,7 +8,7 @@
     "mkdirp":"*"
   },
   "author": {
-    "name": "Darryl Chin <me@darrylchin.com>"
+    "name": "Darryl Chin <skelly@skellyjs.com>"
   },
   "repository": "skellyjs/generator-skellyjs",
   "preferGlobal": true,
