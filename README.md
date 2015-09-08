@@ -1,7 +1,9 @@
 # generator-skellyjs
+
 Scaffolding generator for skellyjs
 
 ![skellyjs](https://avatars3.githubusercontent.com/u/14166772?v=3&s=200)
+
 See [skellyjs](https://npmjs.com/package/skellyjs) for information on the framework.
 
 # Installation
