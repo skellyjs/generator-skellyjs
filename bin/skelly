@@ -16,8 +16,13 @@ var debug = enableDebug ? function() {
 
 program
   .version(require('../package.json').version)
-  .usage("skelly <project name>")
+  .usage("<project name>")
   .parse(process.argv);
+
+if (program.args.length < 1) {
+  program.outputHelp();
+  process.exit();
+}
 
 var name = program.args[0];
 var baseFilesDir = path.join(module.filename.split('bin/skelly')[0],'files');

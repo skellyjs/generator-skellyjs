@@ -4,6 +4,9 @@ var skelly = require('skellyjs'); // skellyjs framework
 // set the environment from shell variable.  this changes things like api keys, logging, and other configurations (default to development)
 var env = process.env.NODE_ENV || 'development';
 
+skelly.generateCss();
+skelly.generateJs();
+
 // create the server
 var server = http.createServer(function(req, res) {
   skelly.router(req,res);

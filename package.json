@@ -1,6 +1,6 @@
 {
   "name": "generator-skellyjs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "dependencies": {
     "commander": "*",
@@ -12,5 +12,9 @@
   },
   "repository": "skellyjs/generator-skellyjs",
   "preferGlobal": true,
+  "bin": {
+    "skelly": "./bin/skelly"
+  },
+  "main": "bin/skelly",
   "license": "MIT"
 }
