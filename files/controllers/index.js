@@ -2,10 +2,10 @@ module.exports = function(skelly, req, res) {
   // the view file in /views
   var viewFile = "index.html";
 
-  // data that you want to pass into the view
-  var Index = require(path.join(skelly.appRoot,skelly.modelsRoot,'index'))(skelly);
+  // include the index model
+  var Index = skelly.models.index;
 
-  // find any single entry in the database
+  // find any single entry in the index model
   Index.findOne({}, function(err, index) {
     if (err) {
       skelly.log.error(err);
