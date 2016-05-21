@@ -47,7 +47,7 @@ function copy(from, to) {
   if (isBinaryFile.sync(from))
     write(to, fs.readFileSync(from));
   else
-    write(to, fs.readFileSync(from, 'utf-8').replace("{name}",name));
+    write(to, fs.readFileSync(from, 'utf-8').replace(new RegExp("{name}", 'g'),name));
 }
 function write(file, str, mode) {
   fs.writeFileSync(file, str, { mode: mode || 0666 });

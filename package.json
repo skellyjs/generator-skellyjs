@@ -1,11 +1,18 @@
 {
   "name": "generator-skellyjs",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
   "dependencies": {
     "commander": "*",
     "isbinaryfile": "*",
     "mkdirp":"*"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-git": "*"
+  },
+  "scripts": {
+    "release": "gulp release"
   },
   "author": {
     "name": "Darryl Chin <skelly@skellyjs.com>"
