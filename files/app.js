@@ -11,6 +11,6 @@ var server = http.createServer(function(req, res) {
 
 // accept incoming traffic
 server.listen({port: process.env.PORT || 5000}, function() {
-	skelly.log.debug('Listening on port:', server.address().port);
-	skelly.log.debug("Hash:",skelly.hash);
+  skelly.log.debug('Listening on port:', server.address().port);
+  skelly.log.debug('Hash:',skelly.hash);
 });
